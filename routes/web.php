@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.dashboard');
+    return view('pages.home');
 });
 
 Route::group(['prefix' => 'plagiat', 'namespace' => 'App\Http\Controllers\Pliagiat', 'as' => 'plagiat.'], function(){
     Route::resource('en_ligne', 'PlagiatEnLigneController');
+    Route::resource('dashboard', 'DashboardController');
 });
