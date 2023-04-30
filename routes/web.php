@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.dashboard');
 });
+
+Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\User', 'as' => 'user.'],function (){
+    Route::resource('DocumentADocument','DocumentADocumentController');
+});
