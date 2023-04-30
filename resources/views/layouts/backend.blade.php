@@ -277,7 +277,7 @@
                     <a href="#">&copy; Copyright</a></a>
                 </div>
                 <div class="footer-right">
-                     <p><a target="_blank" href="kairos-sarl.com">Plagiarism Cheecker</a></p>
+                     <p><a target="_blank" >Plagiarism Checker</a></p>
                 </div>
             </footer>
         </div>
