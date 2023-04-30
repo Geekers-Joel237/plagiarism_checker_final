@@ -19,5 +19,6 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'plagiat', 'namespace' => 'App\Http\Controllers\Pliagiat', 'as' => 'plagiat.'], function(){
     Route::resource('en_ligne', 'PlagiatEnLigneController');
+    Route::resource('en_local', 'PlagiatEnLocalController');
     Route::resource('dashboard', 'DashboardController');
 });
