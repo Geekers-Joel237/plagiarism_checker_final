@@ -7,6 +7,7 @@
     @yield('meta')
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bundles/dropzonejs/dropzone.css') }}">
     <!-- Template CSS -->
     {{--  bundle  --}}
     <link rel="stylesheet" href="{{ asset('assets/bundles/bootstrap-social/bootstrap-social.css') }}">
