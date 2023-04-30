@@ -36,7 +36,7 @@
                                     <div class="form-group row mb-4">
                                         <div class="col-sm-12 col-md-12">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Source</label>
-                                            <textarea class="summernote" >
+                                            <textarea class="summernote"  >
                                             </textarea>
                                         </div>
                                     </div>
