@@ -174,7 +174,7 @@
                         {{--  parametre  --}}
                         <li class="menu-header">Paramètres</li>
                         <li>
-                            <a href="#" class=" nav-link ">
+                            <a href="{{route('plagiat.settings.index')}}" class=" nav-link ">
                                 <i class="fas fa-cogs"></i><span>Configurations</span></a>
                         </li>
                     </ul>
