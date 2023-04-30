@@ -20,29 +20,35 @@
                     <div id="wizard_horizontal">
                         <h2>Charger le Document</h2>
                         <section>
-                            <p>In to am attended desirous raptures declared diverted confined at. Collected
-                                instantly
-                                remaining up certainly to necessary as. Over walk dull into son boy door went
-                                new.
-                                At or happiness commanded daughters as. Is handsome an declared at received in
-                                extended
-                                vicinity subjects. Into miss on he over been late pain an. Only week bore boy
-                                what
-                                fat case left use. Match round scale now sex style far times. Your me past an
-                                much.
-                            </p>
+                            <div class="row">
+                                <div class="col-3 d-flex flex-column py-5 justify-content-between">
+                                    <div class="form-group">
+                                        <label for="file">Choisir le document</label>
+                                        <input class="btn btn-primary" type="file" id="file" name="file" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn  btn-warning" type="submit" >
+                                            Chargez le document
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="form-group row mb-4">
+                                        <div class="col-sm-12 col-md-12">
+                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Source</label>
+                                            <textarea class="summernote" >
+                                            </textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </section>
                         <h2>Lancer le Scan</h2>
                         <section>
-                            <p>New the her nor case that lady paid read. Invitation friendship travelling eat
-                                everything
-                                the out two. Shy you who scarcely expenses debating hastened resolved. Always
-                                polite
-                                moment on is warmth spirit it to hearts. Downs those still witty an balls so
-                                chief
-                                so. Moment an little remain no up lively no. Way brought may off our regular
-                                country
-                                towards adapted cheered.</p>
+                            <div class="d-flex justify-content-center align-items-center py-5">
+                                <a href="#" class="btn btn-icon icon-left btn-primary"><i class="fas fa-arrow-right"></i> Lancer </a>
+                            </div>
                         </section>
                         <h2>Resultats en Ligne</h2>
                         <section>
