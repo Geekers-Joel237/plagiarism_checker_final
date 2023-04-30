@@ -157,7 +157,7 @@
                     <ul class="sidebar-menu">
                         <li class="menu-header">Main</li>
                         <li class="dropdown active">
-                            <a href="" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+                            <a href="{{route('plagiat.dashboard.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
                         </li>
                         {{--  debut de la liste des menus  --}}
                         <li class="dropdown">
