@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>New Project</title>
+    <title>Plagiarism Checker App</title>
     @yield('meta')
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
@@ -63,8 +63,8 @@
                         </li>
                         <li class="langue">
                             <select class="form-control selectric changeLang">
-                                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>{{ __('message._lang_en') }}</option>
-                                <option value="fr" {{ session()->get('locale') == 'fr' ? 'selected' : '' }}>{{ __('message._lang_fr') }}</option>
+                                <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>Anglais</option>
+                                <option value="fr" {{ session()->get('locale') == 'fr' ? 'selected' : '' }}>Français</option>
                             </select>
                         </li>
                         <li>
@@ -151,7 +151,7 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href=""> <img alt="image" src="{{ asset('assets/img/kairos.png') }}" class="header-logo" /> <span class="logo-name">KM</span>
+                        <a href=""> <img alt="image" src="" class="header-logo" /> <span class="logo-name">Plagiarism Checker</span>
                         </a>
                     </div>
                     <ul class="sidebar-menu">
@@ -160,106 +160,23 @@
                             <a href="" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
                         </li>
                         {{--  debut de la liste des menus  --}}
-
-                        <li><a class="nav-link" href="#"><i class="fas fa-exchange-alt"></i><span>Exchange</span></a></li>
-                        <li><a class="nav-link" href="#"><i class="fas fa-signal"></i><span>Reporting</span></a></li>
-
-                       {{--  capture  --}}
-                       <li class="dropdown">
-                            <a class="menu-toggle nav-link has-dropdown" href="#">
-                                <i class="far fa-clone"></i><span>Capture</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="#">{{ __('message._create') }}</a></li>
-                                <li><a class="nav-link" href="">{{ __('message._basket') }}</a></li>
-                            </ul>
-                        </li>
-                        {{--  archivage physique  --}}
                         <li class="dropdown">
-                            <a class="menu-toggle nav-link has-dropdown" href="#">
-                                <i class="fas fa-box-open"></i><span>Archivage Physique</span>
-                            </a>
+                            <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                                data-feather="book-open"></i><span>Détection Plagiat</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="#">{{ __('message._regions') }}</a></li>
-                                <li><a class="nav-link" href="#">{{ __('message._villes') }}</a></li>
-                                <li><a class="nav-link" href="#">{{ __('message._salles') }}</a></li>
-                                <li><a class="nav-link" href="#">{{ __('message._typesdeConteneur') }}</a></li>
-                                {{--  gestion des etiquetes  --}}
-                                <li class="dropdown">
-                                    <a class="menu-toggle nav-link has-dropdown" href="#">{{ __('message._gestiondesetiquettes') }}</a>
-                                    <ul class="dropdown-menu">
-                                        <li> <a class="nav-link" href="#">{{ __('message._etiquettesdesalle') }}</a></li>
-                                        <li><a class="nav-link" href="#">{{ __('message._etiquettesEpi') }}</a></li>
-                                        <li><a class="nav-link" href="#">{{ __('message._etiquettesTravée') }}</a></li>
-                                        <li><a class="nav-link" href="#">{{ __('message._etiquettesEtagère') }}</a>
-                                        </li>
-                                        <li><a class="nav-link" href="#">{{ __('message._etiquettesConteneur') }}</a></li>
-                                    </ul>
-                                </li>
+                              <li><a class="nav-link" href="">Document à Document</a></li>
+                              <li><a class="nav-link" href="">Plagiat en Local</a></li>
+                              <li><a class="nav-link" href="">Plagiat en ligne</a></li>
                             </ul>
                         </li>
+
+
                         {{--  parametre  --}}
                         <li class="menu-header">Paramètres</li>
-                         <li class="dropdown">
-                            <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                                    class="fas fa-coins"></i><span>{{ __('message._administration') }}</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nac-link" href="">{{ __('message._organization') }}</a></li>
-                                <li><a class="nav-link" href="" data-toggle="tooltip" title="" data-original-title="{{ __('message._classification_scheme') }}">{{  __('message._classification_scheme_reduit') }}</a></li>
-                                <li><a class="nac-link" href="">{{ __('message._plan_classements_documentaire_reduit') }}</a></li>
-                                <li><a class="nac-link" href=""  data-toggle="tooltip" title="" data-original-title="{{ __('message._documentaire') }}">{{ __('message._documentaire_reduit') }}</a></li>
-                                <li><a class="nav-link" href="#">{{ __('message._regle_de_description') }}</a></li>
-                                {{--  profile de metadonnee  --}}
-                                <li class="dropdown">
-                                    <a href="" class="nav-link "><span>{{ __('message._profildemetadonnee') }}</span></a>
-                                </li>
-                                {{--  regles de convertion  --}}
-                                <li class="dropdown">
-                                    <a href="" class="nav-link"><span>{{ __('message._conversion') }}</span></a>
-                                </li>
-                                    {{-- <ul class="dropdown-menu">
-                                        <li><a class="nav-link" href="{{route('admin.regle_conversion.index')}}">{{ __('message._regledeconversion') }}</a></li>
-                                        <li><a class="nav-link" href="{{route('admin.rapport_conversion.index')}}">{{ __('message._rapport_conversion') }}</a></li>
-                                    </ul>
-                                </li> --}}
-
-                                <li>
-                                    <a class="nav-link" href="">{{ __('message._referentiel_gestion') }}</a>
-                                </li>
-
-                            </ul>
+                        <li>
+                            <a href="#" class=" nav-link ">
+                                <i class="fas fa-cogs"></i><span>Configurations</span></a>
                         </li>
-                         {{--  security  --}}
-                         {{-- @if(check_access_groupe(Auth::user()->id_groupe,'view_security_tag') == 'on')
-                            <li class="dropdown">
-                                <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fas fa-lock"></i><span>{{ __('message._security') }}</span></a>
-                                <ul class="dropdown-menu">
-
-                                    <li><a class="nav-link" href="">{{ __('message._groupeutilisateur') }}</a></li>
-                                    <li><a class="nav-link" href="">{{ __('message._utilisateurs') }}</a></li>
-                                    <li><a class="nav-link" href="">{{ __('message._historiques') }}</a></li>
-                                </ul>
-                            </li>
-                         @endif --}}
-                        {{--  for coffre fort  --}}
-                        <li class="dropdown">
-                            <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fas fa-user-lock"></i><span>{{ __('message._safe_deposit') }}</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="">Management tools</a></li>
-                                <li><a class="nav-link" href="">Get access</a></li>
-
-                                <li><a class="nav-link" href="#">{{ __('message._historiques') }}</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="menu-toggle nav-link has-dropdown"><i class="fa fa-wrench"></i><span>{{ __('message._tools') }}</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="">{{ __('message._contacts') }}</a></li>
-                            </ul>
-                        </li>
-                        {{-- @if(check_access_groupe(Auth::user()->id_groupe,'view_settings') == 'on') --}}
-                            <li><a class="nav-link" href=""><i class="fas fa-cogs"></i><span>{{ __('message._setting') }}</span></a></li>
-                        {{-- @endif --}}
                     </ul>
                 </aside>
             </div>
@@ -357,10 +274,10 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    <a href="#">&copy; {{ __('message._copyrith_') }}</a></a>
+                    <a href="#">&copy; Copyright</a></a>
                 </div>
                 <div class="footer-right">
-                     <p><a target="_blank" href="kairos-sarl.com">Kairos KM</a></p>
+                     <p><a target="_blank" href="kairos-sarl.com">Plagiarism Cheecker</a></p>
                 </div>
             </footer>
         </div>
