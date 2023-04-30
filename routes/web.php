@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,16 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+Route::post('uploadFile',[MediaController::class, 'uploadFile'])->name('uploadFile');
+Route::post('comparePlagiat',[MediaController::class, 'comparePlagiat'])->name('comparePlagiat');
+
+
 Route::group(['prefix' => 'plagiat', 'namespace' => 'App\Http\Controllers\Pliagiat', 'as' => 'plagiat.'], function(){
     Route::resource('en_ligne', 'PlagiatEnLigneController');
     Route::resource('en_local', 'PlagiatEnLocalController');
     Route::resource('dashboard', 'DashboardController');
+});
+
+Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\User', 'as' => 'user.'], function (){
+    Route::resource('DocumentADocument', 'DocumentADocumentController');
 });
