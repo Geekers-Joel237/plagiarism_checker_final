@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('pages.dashboard');
 });
 
-Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\User', 'as' => 'user.'],function (){
-    Route::resource('DocumentADocument','DocumentADocumentController');
+Route::group(['prefix' => 'plagiat', 'namespace' => 'App\Http\Controllers\Pliagiat', 'as' => 'plagiat.'], function(){
+    Route::resource('en_ligne', 'PlagiatEnLigneController');
 });

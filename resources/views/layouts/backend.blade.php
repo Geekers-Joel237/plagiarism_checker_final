@@ -166,7 +166,7 @@
                             <ul class="dropdown-menu">
                               <li><a class="nav-link" href="{{route('user.DocumentADocument.index')}}">Document à Document</a></li>
                               <li><a class="nav-link" href="">Plagiat en Local</a></li>
-                              <li><a class="nav-link" href="">Plagiat en ligne</a></li>
+                              <li><a class="nav-link" href="{{route('plagiat.en_ligne.index')}}">Plagiat en ligne</a></li>
                             </ul>
                         </li>
 
@@ -322,6 +322,9 @@
     <script src="{{ asset('assets/js/page/chart-apexcharts.js') }}"></script>
     <script src="{{ asset('assets/js/page/sweetalert.js') }}"></script>
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
+    <script src="{{ asset('assets/bundles/jquery-steps/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('assets/bundles/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/page/form-wizard.js') }}"></script>
     {{--  end page folder  --}}
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
