@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0",
         "atomescrochus/laravel-string-similarities": "^2.1",
+        "barryvdh/laravel-dompdf": "^2.0",
         "caxy/php-htmldiff": "^0.1.14",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
