@@ -15,7 +15,7 @@ use App\Http\Controllers\MediaController;
 */
 
 Route::get('/', function () {
-    return view('pages.dashboard');
+    return view('pages.home');
 });
 
 Route::post('uploadFile',[MediaController::class, 'uploadFile'])->name('uploadFile');
@@ -26,6 +26,8 @@ Route::post('generationRapport',[MediaController::class, 'generationRapport'])->
 
 Route::group(['prefix' => 'plagiat', 'namespace' => 'App\Http\Controllers\Pliagiat', 'as' => 'plagiat.'], function(){
     Route::resource('en_ligne', 'PlagiatEnLigneController');
+    Route::resource('en_local', 'PlagiatEnLocalController');
+    Route::resource('dashboard', 'DashboardController');
 });
 
 Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\User', 'as' => 'user.'], function (){
