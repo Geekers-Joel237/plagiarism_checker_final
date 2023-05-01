@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::post('uploadFile',[MediaController::class, 'uploadFile'])->name('uploadFile');
 Route::post('comparePlagiat',[MediaController::class, 'comparePlagiat'])->name('comparePlagiat');
+Route::post('generationRapport',[MediaController::class, 'generationRapport'])->name('generationRapport');
+
 
 
 Route::group(['prefix' => 'plagiat', 'namespace' => 'App\Http\Controllers\Pliagiat', 'as' => 'plagiat.'], function(){

@@ -249,10 +249,6 @@
                                         @endif
                                     </div>
                                 </form>
-
-
-
-
                                             <div class="col">
                                                 <div class="form-group row mb-4">
                                                     <div class="col-sm-12 col-md-12">
@@ -265,20 +261,54 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                 </div>
 
                         </section>
-                        <h2>Third Step</h2>
+                        <h2>Générer Votre Rapport</h2>
                         <section>
-                            <p>Husbands ask repeated resolved but laughter debating. She end cordial visitor
-                                noisier
-                                fat subject general picture. Or if offering confined entrance no. Nay rapturous
-                                him
-                                see something residence. Highly talked do so vulgar. Her use behaved spirits
-                                and
-                                natural attempt say feeling. Exquisite mr incommode immediate he something
-                                ourselves
-                                it of. Law conduct yet chiefly beloved examine village proceed.</p>
+                            {{-----ce formulaire seras utiliser pour la genaration de rapport----------}}
+                            <div class="row">
+
+                               <div class="col-2 mt-1">
+                                   <form action="{{route('generationRapport')}}" method="POST" enctype="multipart/form-data" target="_blank">
+                                       @csrf
+                                       <textarea style="display:none" name="scorePlagiat">
+                                            @if ($score = Session::get('score'))
+                                               {{$score}}
+                                           @endif
+                                       </textarea>
+                                       <textarea style="display:none" name="source">
+                                             @if ($source = Session::get('source'))
+                                               {{$source}}
+                                           @endif
+                                       </textarea>
+                                       <textarea style="display:none" name="cible">
+                                             @if ($source2 = Session::get('source2'))
+                                               {{$source2}}
+                                           @endif
+                                       </textarea>
+                                       <textarea style="display:none"  name="similarcontent">
+                                             @if ($similar = Session::get('similarcontent'))
+                                                   <?php echo($similar) ?>
+                                           @endif
+                                       </textarea>
+                                       <button class="btn btn-success">génerer le rapport</button>
+                                   </form>
+                               </div>
+
+                                <div class="col">
+                                    <p>
+                                       Description de code couleur  An country demesne message it. Bachelor domestic extended doubtful as concerns
+                                        at. Morning
+                                        prudent removal an letters by. On could my in order never it. Or excited
+                                        certain
+                                        sixteen it to parties colonel. Depending conveying direction has led immediate.
+                                        Law
+                                        gate her well bed life feet seen rent. On nature or no except it sussex
+                                    </p>
+                                </div>
+                            </div>
                         </section>
                         <h2>Forth Step</h2>
                         <section>
