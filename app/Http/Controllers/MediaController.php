@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Smalot\PdfParser\Parser;
 use Caxy\HtmlDiff\HtmlDiff;
 use Caxy\HtmlDiff\HtmlDiffConfig;
-
+use PDF;
 class MediaController extends Controller
 {
     //
@@ -96,6 +96,31 @@ class MediaController extends Controller
             ->with('source2', $content2)
             ->with('similarcontent', $similarcontent)
             ->with('score',$similar);
+
+    }
+
+    public function generationRapport(Request $request){
+        if(isset($request->scorePlagiat)){
+
+            $data = [
+                "title" => "Rapport de plagiat",
+                "content" => "ici seras le contenue du pdf",
+                "scorePlagiat" => $request->scorePlagiat,
+                "source" => $request->source,
+                "cible" => $request->cible,
+                "Comparaison" => $request->similarcontent
+            ];
+
+            $pdf = \PDF::loadView('user.contenueRapport', $data);
+            return response($pdf->output(), 200)
+                ->header('Content-Type', 'application/pdf')
+                ->header('Content-Disposition', 'inline; filename="mon-fichier-pdf.pdf"');
+
+        }else{
+            return back()
+                ->with('source', $request->source)
+                ->with('source2', $request->cible);
+        }
 
     }
 }
