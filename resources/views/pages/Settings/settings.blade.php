@@ -18,6 +18,7 @@
         <html>
             <head>
                 <title></title>
+                
             </head>
             <style>
 
@@ -179,7 +180,7 @@
 
             <div class="container text-center">
                 <div class="row">
-                  <div class="col-lg-5">
+                  <div class="col-lg-3">
 
                    {{-- <div class="col-12 col-md-4 col-lg-4"> --}}
                        <div class="pricing pricing-highlight">
@@ -209,9 +210,24 @@
 
                                   </div>
                             </div>
-                                  <div class="pricing-cta">
+                            <form>
+                               
+
+                                <input type="number" style="font-size: 20px !important;  " placeholder=" value" min="1" max="100"/>
+                                <div class="pricing-cta">
                                     <a href="#">Valider <i class="fas fa-arrow-right"></i></a>
                                   </div>
+
+                                
+                            </form>
+                                
+
+                                  
+
+
+
+
+
                     </div>
                     </div>
 
@@ -304,114 +320,11 @@
                          </div>
                      </div>
                             
-                     <div class="row">
-                        <div class="col-lg-8 col-md-12 col-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Task Details</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped">
-                                            <tr>
-                                                <th>
-                                                    <div class="custom-checkbox custom-control">
-                                                        <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad"
-                                                               class="custom-control-input" id="checkbox-all">
-                                                        <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                                                    </div>
-                                                </th>
-                                                <th>Task Name</th>
-                                                <th>Progress</th>
-                                                <th>Due Date</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-0 text-center">
-                                                    <div class="custom-checkbox custom-control">
-                                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                                               id="checkbox-1">
-                                                        <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
-                                                    </div>
-                                                </td>
-                                                <td>Ecommerce website</td>
-                                                <td class="align-middle">
-                                                    <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                                                        <div class="progress-bar bg-success" data-width="100"></div>
-                                                    </div>
-                                                </td>
-                                                <td>2018-01-20</td>
-                                                <td>
-                                                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i
-                                                            class="fas fa-pencil-alt"></i></a>
-                                                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"
-                                                       data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                       data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-0 text-center">
-                                                    <div class="custom-checkbox custom-control">
-                                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                                               id="checkbox-4">
-                                                        <label for="checkbox-4" class="custom-control-label">&nbsp;</label>
-                                                    </div>
-                                                </td>
-                                                <td>Android App</td>
-                                                <td class="align-middle">
-                                                    <div class="progress" data-height="4" data-toggle="tooltip" title="30%">
-                                                        <div class="progress-bar bg-orange" data-width="30"></div>
-                                                    </div>
-                                                </td>
-                                                <td>2018-09-11</td>
-                                                <td>
-                                                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i
-                                                            class="fas fa-pencil-alt"></i></a>
-                                                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"
-                                                       data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                       data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-0 text-center">
-                                                    <div class="custom-checkbox custom-control">
-                                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                                               id="checkbox-5">
-                                                        <label for="checkbox-5" class="custom-control-label">&nbsp;</label>
-                                                    </div>
-                                                </td>
-                                                <td>Logo Design</td>
-                                                <td class="align-middle">
-                                                    <div class="progress" data-height="4" data-toggle="tooltip" title="67%">
-                                                        <div class="progress-bar bg-purple" data-width="67"></div>
-                                                    </div>
-                                                </td>
-                                                <td>2018-04-12</td>
-                                                <td>
-                                                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i
-                                                            class="fas fa-pencil-alt"></i></a>
-                                                    <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"
-                                                       data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                       data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-0 text-center">
-                                                    <div class="custom-checkbox custom-control">
-                                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                                               id="checkbox-6">
-                                                        <label for="checkbox-6" class="custom-control-label">&nbsp;</label>
-                                                    </div>
-                                                </td>
-                                           
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                     
                         
-         
                   
+
+
                     </body>
                     </html>       
 
