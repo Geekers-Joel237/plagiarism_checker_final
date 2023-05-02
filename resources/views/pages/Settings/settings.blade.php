@@ -202,7 +202,7 @@
                                                 <span class="progress-right">
                                                     <span class="progress-bar"></span>
                                                 </span>
-                                                <div class="progress-value">90%</div>
+                                                <div class="progress-value" id="pourcent">90%</div>
                                             </div>
                                         </div>
                                      
@@ -213,13 +213,30 @@
                             <form>
                                
 
-                                <input type="number" style="font-size: 20px !important;  " placeholder=" value" min="1" max="100"/>
+                                <input type="number" style="font-size: 20px !important;  " placeholder=" value" min="1" max="100" id="nombre"/>
                                 <div class="pricing-cta">
-                                    <a href="#">Valider <i class="fas fa-arrow-right"></i></a>
+                                    <button type="button" class="btn btn-primary" onclick="getValue()" style="font-size: 30px !important;  ">Valider</button>
+                                    
                                   </div>
 
                                 
                             </form>
+                            <script>
+
+                                            function getValue() {
+                                                // Sélectionner l'élément input et récupérer sa valeur
+                                                // var input = document.getElementById("nombre").value;
+
+                                             input = document.getElementById("pourcent");
+                                              let nom = input.innerHTML =document.getElementById("nombre").value;
+ 
+                                              
+
+
+
+                                        }
+
+                            </script>
                                 
 
                                   
