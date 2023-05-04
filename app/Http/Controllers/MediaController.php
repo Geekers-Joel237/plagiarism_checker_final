@@ -60,7 +60,9 @@ class MediaController extends Controller
                         ->with('source', $content)
                         ->with('source2', $content2);
                 }else{
-                    dd("error file2");
+                    return back()
+                        ->with('source', $content);
+                    //dd("error file2");
                 }
             }else{
                 dd("Error");

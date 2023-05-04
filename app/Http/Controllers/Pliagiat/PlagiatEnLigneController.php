@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Pliagiat;
 
 use App\Http\Controllers\Controller;
+use Exception;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Psr\Http\Client\ClientExceptionInterface;
+
 
 class PlagiatEnLigneController extends Controller
 {
@@ -33,9 +39,10 @@ class PlagiatEnLigneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $resultats = $this->check_plagiat('Descriptions in words aren re the best we can do in text. A graphics file illustrating the character set should be available');
+        dd($resultats);
     }
 
     /**
@@ -81,5 +88,30 @@ class PlagiatEnLigneController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function check_plagiat(string $text)
+    {
+        try {
+            $client = new Client();
+            $headers = [
+                'Content-Type' => 'application/json',
+                'X-RapidAPI-Key' => '941fda43f1msh261969b320772a8p14ff81jsn42829015de4a',
+                'X-RapidAPI-Host' => 'plagiarism-checker-and-auto-citation-generator-multi-lingual.p.rapidapi.com'
+            ];
+            $body = '{
+              "text": "'.$text.'",
+              "language": "en",
+              "includeCitations": false,
+              "scrapeSources": false
+            }';
+            $request = new \GuzzleHttp\Psr7\Request('POST', 'https://plagiarism-checker-and-auto-citation-generator-multi-lingual.p.rapidapi.com/plagiarism', $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            return json_decode($res->getBody());
+
+
+        } catch (Exception $e) {
+            return $e;
+        }
     }
 }

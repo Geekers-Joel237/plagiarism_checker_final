@@ -22,21 +22,28 @@
                         <section>
                             <div class="row">
                                 <div class="col-3 d-flex flex-column py-5 justify-content-between">
-                                    <div class="form-group">
-                                        <label for="file">Choisir le document</label>
-                                        <input class="btn btn-primary" type="file" id="file" name="file" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn  btn-warning" type="submit" >
-                                            Chargez le document
-                                        </button>
-                                    </div>
+                                    <form action="{{ route('uploadFile') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="file">Choisir le document</label>
+                                            <input class="btn btn-primary" type="file" id="file" name="file" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn  btn-warning" type="submit" >
+                                                Chargez le document
+                                            </button>
+                                        </div>
+                                    </form>
+
                                 </div>
                                 <div class="col-9">
                                     <div class="form-group row mb-4">
                                         <div class="col-sm-12 col-md-12">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Source</label>
-                                            <textarea class="summernote"  >
+                                            <textarea class="summernote">
+                                             @if ($source = Session::get('source'))
+                                                    {{ $source }}
+                                                @endif
                                             </textarea>
                                         </div>
                                     </div>
@@ -46,9 +53,17 @@
                         </section>
                         <h2>Lancer le Scan</h2>
                         <section>
-                            <div class="d-flex justify-content-center align-items-center py-5">
-                                <a href="#" class="btn btn-icon icon-left btn-primary"><i class="fas fa-arrow-right"></i> Lancer </a>
-                            </div>
+                            <form action="{{route('plagiat.en_ligne.store')}}" method="post">
+                                @csrf
+                                <textarea class="summernote" hidden="hidden" name="text" >
+                                             @if ($source = Session::get('source'))
+                                        {{ $source }}
+                                    @endif
+                                </textarea>
+                                <div class="d-flex justify-content-center align-items-center py-5">
+                                    <button type="submit" class="btn btn-icon icon-left btn-primary"><i class="fas fa-arrow-right"></i> Lancer </button>
+                                </div>
+                            </form>
                         </section>
                         <h2>Resultats en Ligne</h2>
                         <section>
