@@ -27,6 +27,8 @@ Route::post('generationRapport',[MediaController::class, 'generationRapport'])->
 Route::group(['prefix' => 'plagiat', 'namespace' => 'App\Http\Controllers\Pliagiat', 'as' => 'plagiat.'], function(){
     Route::resource('en_ligne', 'PlagiatEnLigneController');
     Route::resource('en_local', 'PlagiatEnLocalController');
+    Route::post('uploadFile',['App\Http\Controllers\Pliagiat\PlagiatEnLocalController','uploadFile'])->name('uploadFile');
+    Route::post('traitementLocal',['App\Http\Controllers\Pliagiat\PlagiatEnLocalController','traitementLocal'])->name('traitementLocal');
     Route::resource('dashboard', 'DashboardController');
 });
 

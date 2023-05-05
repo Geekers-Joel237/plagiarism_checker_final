@@ -166,7 +166,7 @@
                                 data-feather="book-open"></i><span>Détection Plagiat</span></a>
                             <ul class="dropdown-menu">
                               <li><a class="nav-link" href="{{route('user.DocumentADocument.index')}}">Document à Document</a></li>
-                              <li><a class="nav-link" href="">Plagiat en Local</a></li>
+                              <li><a class="nav-link" href="{{route('plagiat.en_local.index')}}">Plagiat en Local</a></li>
                               <li><a class="nav-link" href="{{route('plagiat.en_ligne.index')}}">Plagiat en ligne</a></li>
                             </ul>
                         </li>
