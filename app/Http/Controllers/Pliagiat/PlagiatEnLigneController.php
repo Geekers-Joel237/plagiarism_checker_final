@@ -41,8 +41,30 @@ class PlagiatEnLigneController extends Controller
      */
     public function store(Request $req)
     {
-        $resultats = $this->check_plagiat('Descriptions in words aren re the best we can do in text. A graphics file illustrating the character set should be available');
-        dd($resultats);
+        $texte = $this->supprimer_caracteres_speciaux($req->text);
+        $texte = $this->couper_texte($texte);
+        $resultats = $this->check_plagiat($texte);
+        return back()
+            ->with('resultats',$resultats)
+            ->with('success',true);
+    }
+
+    private function couper_texte($texte) {
+        $nb_caracteres = strlen($texte);
+        if ($nb_caracteres < 3000) {
+            return $texte;
+        } else {
+            return substr($texte, 0, 2900);
+        }
+    }
+    private function supprimer_caracteres_speciaux($texte) {
+        // Remplace les caractères spéciaux par des espaces
+        $texte = preg_replace('/[^A-Za-z0-9]/', ' ', $texte);
+        // Enlève les espaces en début et fin de chaîne
+        $texte = trim($texte);
+        // Enlève les espaces en double
+        $texte = preg_replace('/\s+/', ' ', $texte);
+        return $texte;
     }
 
     /**

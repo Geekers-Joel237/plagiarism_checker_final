@@ -53,9 +53,14 @@
                         </section>
                         <h2>Lancer le Scan</h2>
                         <section>
+                            @if($success = Session::get('success'))
+                                <span class="badge badge-success text-center my-3 mx-auto">
+                                    Les résultats sont disponibles
+                                </span>
+                            @endif
                             <form action="{{route('plagiat.en_ligne.store')}}" method="post">
                                 @csrf
-                                <textarea class="summernote" hidden="hidden" name="text" >
+                                <textarea class=" d-none" style="display: none !important;" hidden="hidden" name="text" >
                                              @if ($source = Session::get('source'))
                                         {{ $source }}
                                     @endif
@@ -67,15 +72,49 @@
                         </section>
                         <h2>Resultats en Ligne</h2>
                         <section>
-                            <p>Husbands ask repeated resolved but laughter debating. She end cordial visitor
-                                noisier
-                                fat subject general picture. Or if offering confined entrance no. Nay rapturous
-                                him
-                                see something residence. Highly talked do so vulgar. Her use behaved spirits
-                                and
-                                natural attempt say feeling. Exquisite mr incommode immediate he something
-                                ourselves
-                                it of. Law conduct yet chiefly beloved examine village proceed.</p>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Resultats Plagiat en ligne</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped" id="table-1">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="text-center">
+                                                            Sources
+                                                        </th>
+                                                        <th>Url</th>
+                                                        <th>Titre</th>
+                                                        <th>Matches</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @if ($resultats = Session::get('resultats'))
+                                                        @foreach($resultats->sources as $key => $resultat)
+                                                            <tr>
+                                                                <td>{{$key + 1}}</td>
+                                                                <td>
+                                                                    <a class="" target="_blank" href="{{$resultat->url}}">
+                                                                        {{$resultat->url}}
+                                                                    </a>
+                                                                    </td>
+                                                                <td>{{$resultat->title}}</td>
+                                                                <td>{{count($resultat->matches)}}</td>
+                                                                <td></td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
                         <h2>Forth Step</h2>
                         <section>
