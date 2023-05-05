@@ -1,6 +1,7 @@
 @extends('layouts.backend')
 
 @section('content')
+
     <section class="section">
         <div class="section-body">
             <div class="row">
@@ -40,7 +41,7 @@
                                     <div class="form-group row mb-4">
                                         <div class="col-sm-12 col-md-12">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Source</label>
-                                            <textarea class="summernote">
+                                            <textarea class="summernote " style="max-height: 500px;overflow-y: auto;">
                                              @if ($source = Session::get('source'))
                                                     {{ $source }}
                                                 @endif
@@ -54,9 +55,11 @@
                         <h2>Lancer le Scan</h2>
                         <section>
                             @if($success = Session::get('success'))
-                                <span class="badge badge-success text-center my-3 mx-auto">
+                                <div class="d-flex justify-content-center">
+                                    <span class="badge badge-success text-center my-3 mx-auto">
                                     Les résultats sont disponibles
                                 </span>
+                                </div>
                             @endif
                             <form action="{{route('plagiat.en_ligne.store')}}" method="post">
                                 @csrf
