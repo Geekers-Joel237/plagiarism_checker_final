@@ -94,6 +94,8 @@ class MediaController extends Controller
         $similar = $comparison->similarText($content1, $content2);
 
         return back()
+
+        
             ->with('source', $content1)
             ->with('source2', $content2)
             ->with('similarcontent', $similarcontent)

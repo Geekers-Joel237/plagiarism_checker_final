@@ -23,13 +23,21 @@
                             <div class="row">
                                 <div class="col-3 d-flex flex-column py-5 justify-content-between">
                                     <div class="form-group">
-                                        <label for="file">Choisir le document</label>
-                                        <input class="btn btn-primary" type="file" id="file" name="file" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn  btn-warning" type="submit" >
-                                            Chargez le document
-                                        </button>
+                                      
+                                        {{---------formulaire de somission du fichier-------------}}
+                                        <form action="{{route('plagiat.uploadFile')}}"  method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                           <div class="form-group">
+                                            <label for="file">Choisir le document</label>
+                                            <input class="btn btn-primary" type="file" id="file" name="file" required>
+                                           </div>
+                                        {{----input pour charger le document ----------}}
+                                           <div class="form-group">
+                                               <button class="btn  btn-warning" type="submit" >
+                                                   Chargez le document
+                                               </button>
+                                           </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-9">
@@ -37,6 +45,9 @@
                                         <div class="col-sm-12 col-md-12">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Source</label>
                                             <textarea class="summernote" >
+                                                @if ($source = Session::get('source'))
+                                                 {{ $source }}
+                                                @endif
                                             </textarea>
                                         </div>
                                     </div>
@@ -47,20 +58,60 @@
                         <h2>Lancer le Scan</h2>
                         <section>
                             <div class="d-flex justify-content-center align-items-center py-5">
-                                <a href="#" class="btn btn-icon icon-left btn-primary"><i class="fas fa-arrow-right"></i> Lancer </a>
+                                <form action="{{route('plagiat.traitementLocal')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <textarea  style="display:none" name="content">
+                                        @if ($source = Session::get('source'))
+                                         {{ $source }}
+                                        @endif
+                                    </textarea>
+                                    <button class="btn btn-primary" type="submit"> <i class="fas fa-arrow-right"></i> Lancer</button>
+                                </form>
                             </div>
                         </section>
                         <h2>Resultats en Ligne</h2>
                         <section>
-                            <p>Husbands ask repeated resolved but laughter debating. She end cordial visitor
-                                noisier
-                                fat subject general picture. Or if offering confined entrance no. Nay rapturous
-                                him
-                                see something residence. Highly talked do so vulgar. Her use behaved spirits
-                                and
-                                natural attempt say feeling. Exquisite mr incommode immediate he something
-                                ourselves
-                                it of. Law conduct yet chiefly beloved examine village proceed.</p>
+                           @if ($arrayMaxPlagiat = Session::get('arrayMaxPlagiat'))
+                                <div class="card-body">
+                                    <div class="able-responsive">
+                                        <table class="table table-striped" id="table-1">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        #
+                                                    </th>
+                                                    <th>SOURCE</th>
+                                                    <th>CIBLE</th>
+                                                    <th>SIMILARITE</th>
+                                                    <th>DATE DE SCAN</th>
+                                                    <th>ACTIONS</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @php
+                                                $count = 0;
+                                            @endphp
+                                            @foreach ($arrayMaxPlagiat as $plagiat)
+                                                <tr>
+                                                    <td>
+                                                        {{++$count}}
+                                                    </td>
+                                                    <td>{{$plagiat["path_source"]}}</td>
+                                                    <td>{{$plagiat["path_cible"]}}</td>
+                                                    <td class="align-middle">
+                                                        {{$plagiat["pourcentage"]}}%
+                                                    </td>
+                                                    <td>2023-05-05</td>
+                                                <td><a href="#" class="btn btn-primary">Détails</a></td>
+
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                             
+                           @endif
                         </section>
                         <h2>Forth Step</h2>
                         <section>
