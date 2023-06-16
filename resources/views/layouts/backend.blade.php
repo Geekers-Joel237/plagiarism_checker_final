@@ -126,7 +126,7 @@
                     {{--  this is for user information  --}}
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         {{-- @if( Auth::user()->profile_image == null) --}}
-                            <img alt="image" src="{{ asset('assets/img/kairos.png') }}" class="user-img-radious-style">
+                            <img alt="image" src="" class="user-img-radious-style">
                         {{-- @else
                             <img alt="image" src="{{ Auth::user()->profile_image }}" class="user-img-radious-style">
                         @endif --}}
@@ -152,7 +152,7 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href=""> <img alt="image" src="" class="header-logo" /> <span class="logo-name">Plagiarism Checker</span>
+                        <a href=""> <span class="logo-name">Plagiarism Checker</span>
                         </a>
                     </div>
                     <ul class="sidebar-menu">

@@ -92,7 +92,7 @@
                                                         <th>Url</th>
                                                         <th>Titre</th>
                                                         <th>Matches</th>
-                                                        <th>Action</th>
+                                                        <th>Score</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -107,7 +107,7 @@
                                                                     </td>
                                                                 <td>{{$resultat->title}}</td>
                                                                 <td>{{count($resultat->matches)}}</td>
-                                                                <td></td>
+                                                                <td>{{$resultat->matches[0]->score}}</td>
                                                             </tr>
                                                         @endforeach
                                                     @endif
