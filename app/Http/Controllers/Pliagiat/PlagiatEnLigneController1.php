@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Pliagiat;
 use App\Http\Controllers\Controller;
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Psr\Http\Client\ClientExceptionInterface;
 
 
 class PlagiatEnLigneController extends Controller
@@ -38,34 +41,55 @@ class PlagiatEnLigneController extends Controller
      */
     public function store(Request $req)
     {
-
         $texte = $this->supprimer_caracteres_speciaux($req->text);
         $texte = $this->couper_texte($texte);
-        $taille_texte_epure = strlen($texte);
-        $taille_texte_initial = strlen($req->text);
-        $rapport = (($taille_texte_epure * 100) / $taille_texte_initial);
-        $resultats = $this->check_plagiat($texte);
+        $text = $this->supprimer_caracteres_speciaux($req->text);
 
-        //dd($resultats);
-        $scores = [];
+        /*
+         * calculate rapport caracteres in text
+         */
+        $rapport = (2900 * 100) / strlen($text);
 
-        if (!empty($resultats)){
-            foreach ($resultats->sources as $resultat){
-                $score = 0;
-                foreach ($resultat->matches as $value ){
-                    $score += $value->score;
-                }
-                $score /= count($resultat->matches);
-                $scores[] = $score;
+        $text = $this->extractSummary($text);
+        $text = $this->couper_texte($text);
+
+        $resultats = $this->check_plagiat($text);
+        $resultScore = [];
+        // $res1 = $resultats->sources;
+        //  $res2 =$res1[0]->matches;
+        // dd($res2[0]->score);
+
+        // dd($resultats);
+
+
+        $score = 0;
+        $tmp = 0 ;
+        foreach($resultats->sources as $resultat) {
+            foreach($resultat->matches as $matche){
+                $score += $matche->score;
+            }
+            $score = ($score*$rapport) / count($resultat->matches);
+
+            array_push($resultScore, $score);
+            //   print_r($tmp."\n");
+            $score = 0;
+            $tmp = 0;
+        }
+
+        for($i=0; $i<count($resultScore); $i++){
+            $tmp = 0;
+            if($resultScore[$i] > 100){
+                $tmp = $resultScore[$i] - 100;
+                print_r($tmp."\n");
+                $resultScore[$i] = $resultScore[$i] - ( $tmp);
+                $resultScore[$i] =$resultScore[$i] - ( $tmp);
             }
         }
 
-        /*$texte = $this->supprimer_caracteres_speciaux($req->text);
-        $texte = $this->couper_texte($texte);*/
 
         return back()
             ->with('resultats',$resultats)
-            ->with('scores', $scores)
+            ->with('scores',$resultScore)
             ->with('success',true);
     }
 
@@ -74,7 +98,7 @@ class PlagiatEnLigneController extends Controller
         if ($nb_caracteres < 3000) {
             return $texte;
         } else {
-            return substr($texte, 0, 2998);
+            return substr($texte, 0, 2900);
         }
     }
     private function supprimer_caracteres_speciaux($texte) {
@@ -85,26 +109,6 @@ class PlagiatEnLigneController extends Controller
         // Enlève les espaces en double
         $texte = preg_replace('/\s+/', ' ', $texte);
         return $texte;
-    }
-
-    function extractSummary($text, $maxSentences = 1000): string
-    {
-        // Tokenisez le texte en phrases
-        $sentences = preg_split('/[.!?]/', $text, -1, PREG_SPLIT_NO_EMPTY);
-
-        // Calculez la longueur de chaque phrase et stockez-la dans un tableau associatif
-        $sentenceLengths = array();
-        foreach ($sentences as $sentence) {
-            $sentenceLengths[$sentence] = strlen($sentence);
-        }
-
-        // Triez les phrases en fonction de leur longueur (du plus court au plus long)
-        asort($sentenceLengths);
-
-        // Sélectionnez les $maxSentences phrases les plus courtes pour former le résumé
-        $summarySentences = array_slice(array_keys($sentenceLengths), 0, $maxSentences);
-
-        return implode(' ', $summarySentences);
     }
 
     /**
@@ -152,8 +156,30 @@ class PlagiatEnLigneController extends Controller
         //
     }
 
+
+    function extractSummary($text, $maxSentences = 1000) {
+        // Tokenisez le texte en phrases
+        $sentences = preg_split('/[.!?]/', $text, -1, PREG_SPLIT_NO_EMPTY);
+
+        // Calculez la longueur de chaque phrase et stockez-la dans un tableau associatif
+        $sentenceLengths = array();
+        foreach ($sentences as $sentence) {
+            $sentenceLengths[$sentence] = strlen($sentence);
+        }
+
+        // Triez les phrases en fonction de leur longueur (du plus court au plus long)
+        asort($sentenceLengths);
+
+        // Sélectionnez les $maxSentences phrases les plus courtes pour former le résumé
+        $summarySentences = array_slice(array_keys($sentenceLengths), 0, $maxSentences);
+
+        return implode(' ', $summarySentences);
+    }
+
     public function check_plagiat(string $text)
     {
+        //$text = $this->extractSummary($text);
+
         try {
             $client = new Client();
             $headers = [

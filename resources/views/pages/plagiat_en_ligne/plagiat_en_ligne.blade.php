@@ -96,20 +96,22 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @if ($resultats = Session::get('resultats'))
-                                                        @foreach($resultats->sources as $key => $resultat)
-                                                            <tr>
-                                                                <td>{{$key + 1}}</td>
-                                                                <td>
-                                                                    <a class="" target="_blank" href="{{$resultat->url}}">
-                                                                        {{$resultat->url}}
-                                                                    </a>
-                                                                    </td>
-                                                                <td>{{$resultat->title}}</td>
-                                                                <td>{{count($resultat->matches)}}</td>
-                                                                <td>{{$resultat->matches[0]->score}}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                    @if ($resultats = Session::get('resultats') and $scores = Session::get('scores'))
+                                                            @foreach($resultats->sources as $key => $resultat)
+                                                                <tr>
+                                                                    <td>{{$key + 1}}</td>
+                                                                    <td>
+                                                                        <a class="" target="_blank" href="{{$resultat->url}}">
+                                                                            {{$resultat->url}}
+                                                                        </a>
+                                                                        </td>
+                                                                    <td>{{$resultat->title}}</td>
+                                                                    {{--<td>{{count($resultat->matches)}}</td>--}}
+
+                                                                    <td>{{$scores[$key]+ $resultats->percentPlagiarism}}</td>
+
+                                                                </tr>
+                                                            @endforeach
                                                     @endif
                                                     </tbody>
                                                 </table>
