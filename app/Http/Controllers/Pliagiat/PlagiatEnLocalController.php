@@ -72,14 +72,17 @@ class PlagiatEnLocalController extends Controller
             array_push($arrayPath, $path->filePath);
         }
 
+       // dd($arrayPath);
+
+        //sil ya moins de 5 liens 
         $pdfParser = new \Smalot\PdfParser\Parser();
+        if(count($arrayPath) <= 5){
         //debut du taitement du palgiat local 
         foreach ($arrayPath as $path) {
             //commencon pas calculer le pourcentage de plagiat 
             $pdf = $pdfParser->parseFile("storage/" . $path);
             $content = $pdf->getText();
             $arrayPlagiat["content"] = $content;
-
 
             //recuperont le texte de difference entre le document soumis et ceux recuperer
             $htmlDiff = new HtmlDiff($request->content, $content);
@@ -98,27 +101,66 @@ class PlagiatEnLocalController extends Controller
             //remplissage du path source 
             $arrayPlagiat["path_source"] = $mediaSource;
 
-            //taille du arraMaxPlagiat
-            $taille = count($arrayMaxPlagiat);
+            return back()
+            ->with('arrayMaxPlagiat', $arrayMaxPlagiat);
 
-           
-            for ($i = 0; $i <= $taille; $i++) {
-                //on suppose que les 5 premier element du tableaux ont le taux de plagiat le plus grand 
-                if (count($arrayMaxPlagiat) < 5) {
+        }
+        }else{
+            $pdfParser = new \Smalot\PdfParser\Parser();
+            //debut du taitement du palgiat local 
+            foreach ($arrayPath as $key=>$path) {
+               
+                //commencon pas calculer le pourcentage de plagiat 
+                $pdf = $pdfParser->parseFile("storage/" . $path);
+                $content = $pdf->getText();
+                $arrayPlagiat["content"] = $content;
+
+    
+    
+                //recuperont le texte de difference entre le document soumis et ceux recuperer
+                $htmlDiff = new HtmlDiff($request->content, $content);
+                $htmlDiff->getConfig()
+                    ->setMatchThreshold(80)
+                    ->setInsertSpaceInReplace(true);
+                $arrayPlagiat["diff"] = $htmlDiff->build();
+                //comparaison entre les deux texte 
+                $comparaison = new \Atomescrochus\StringSimilarities\Compare();
+                $score = $comparaison->similarText($request->content, $content);
+
+                //dd($score);
+    
+                $arrayPlagiat["pourcentage"] = $score;
+    
+                //recuperation du path source
+                $arrayPlagiat["path_cible"] = $path;
+                //remplissage du path source 
+                $arrayPlagiat["path_source"] = $mediaSource;
+    
+                //taille du arraMaxPlagiat
+                //$taille = count($arrayMaxPlagiat);
+                if(count($arrayMaxPlagiat) < 5){
                     array_push($arrayMaxPlagiat, $arrayPlagiat);
-                } else {
-                    foreach ($arrayMaxPlagiat as $key => $element) {
+                }
+
+                    foreach($arrayMaxPlagiat as $key=> $element){
                         if ($arrayPlagiat["pourcentage"] > $element["pourcentage"]) {
-                            // $element = $arrayPath;
                             $arrayMaxPlagiat[$key] = $arrayPlagiat;
+                            //print($key."\n");
                         }
                     }
-
-                }
+                    $arrayMaxPlagiat = array_map("unserialize", array_unique(array_map("serialize", $arrayMaxPlagiat)));
+                
             }
+
+           // dd($arrayMaxPlagiat);
+    
+            return back()
+                ->with('arrayMaxPlagiat', $arrayMaxPlagiat);
+
         }
 
-        return back()
-            ->with('arrayMaxPlagiat', $arrayMaxPlagiat);
+
     }
 }
+
+//https://rapidapi.com/smodin/api/plagiarism-checker-and-auto-citation-generator-multi-lingual

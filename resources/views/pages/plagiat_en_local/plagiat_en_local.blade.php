@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-9">
                                     <div class="form-group row mb-4">
-                                        <div class="col-sm-12 col-md-12">
+                                        <div class="col-sm-12 col-md-12 ml-3 mr-3">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Source</label>
                                             <textarea class="summernote" >
                                                 @if ($source = Session::get('source'))

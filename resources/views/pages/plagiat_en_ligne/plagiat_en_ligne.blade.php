@@ -39,13 +39,20 @@
                                 </div>
                                 <div class="col-9">
                                     <div class="form-group row mb-4">
-                                        <div class="col-sm-12 col-md-12">
+                                        <div class="col-sm-12 col-md-12 ml-3">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Source</label>
+                                         @if (!Session::get('source'))
                                             <textarea class="summernote " style="max-height: 500px;overflow-y: auto;">
                                              @if ($source = Session::get('source'))
                                                     {{ $source }}
                                                 @endif
                                             </textarea>
+                                        @elseif ($path1 = Session::get('path'))
+                                        <embed src="{{ asset("storage/$path1")}}" type="application/pdf" width="750" height="550" class="ml-5">
+                                        @else
+                                        <textarea class="summernote " style="max-height: 500px;overflow-y: auto;"></textarea>
+
+                                        @endif
                                         </div>
                                     </div>
 
