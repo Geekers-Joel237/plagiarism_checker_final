@@ -177,7 +177,7 @@
                             <div class="row">
                                 <form action="{{ route('uploadFile') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    
+
                                     <div class="ml-4">
                                         <button class="btn btn-warning" type="submit">chargez les documents</button>
                                     </div>
@@ -208,7 +208,7 @@
                                                                 {{ $source2 }}
                                                             @endif
                                                         </textarea>
-                                        
+
                                                         <input class="btn btn-primary" type="file" name="file2" required>
                                                     </div>
                                                 </div>
@@ -311,16 +311,7 @@
                                 </div>
                             </div>
                         </section>
-                        <h2>Forth Step</h2>
-                        <section>
-                            <p>An country demesne message it. Bachelor domestic extended doubtful as concerns
-                                at. Morning
-                                prudent removal an letters by. On could my in order never it. Or excited
-                                certain
-                                sixteen it to parties colonel. Depending conveying direction has led immediate.
-                                Law
-                                gate her well bed life feet seen rent. On nature or no except it sussex.</p>
-                        </section>
+
                     </div>
                 </div>
             </div>

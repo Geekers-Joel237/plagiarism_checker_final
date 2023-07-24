@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-3 d-flex flex-column py-5 justify-content-between">
                                     <div class="form-group ">
-                                      
+
                                         {{---------formulaire de somission du fichier-------------}}
                                         <form action="{{route('plagiat.uploadFile')}}"  method="POST" enctype="multipart/form-data">
                                             @csrf
@@ -56,7 +56,7 @@
                                             @else
                                             <textarea class="summernote " style="max-height: 500px;overflow-y: auto;"></textarea>
                                             @endif
-                                            
+
                                         </div>
                                     </div>
 
@@ -118,18 +118,8 @@
                                         </table>
                                     </div>
                                 </div>
-                             
+
                            @endif
-                        </section>
-                        <h2>Forth Step</h2>
-                        <section>
-                            <p>An country demesne message it. Bachelor domestic extended doubtful as concerns
-                                at. Morning
-                                prudent removal an letters by. On could my in order never it. Or excited
-                                certain
-                                sixteen it to parties colonel. Depending conveying direction has led immediate.
-                                Law
-                                gate her well bed life feet seen rent. On nature or no except it sussex.</p>
                         </section>
                     </div>
                 </div>
