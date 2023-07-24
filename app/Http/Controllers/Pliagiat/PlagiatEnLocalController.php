@@ -140,9 +140,10 @@ class PlagiatEnLocalController extends Controller
 
                     //taille du arraMaxPlagiat
                     //$taille = count($arrayMaxPlagiat);
-                    if (count($arrayMaxPlagiat) < 5) {
-                        array_push($arrayMaxPlagiat, $arrayPlagiat);
-                    }
+                    array_push($arrayMaxPlagiat, $arrayPlagiat);
+                   /* if (count($arrayMaxPlagiat) < 5) {
+                        //array_push($arrayMaxPlagiat, $arrayPlagiat);
+                    }*/
 
                     foreach ($arrayMaxPlagiat as $key => $element) {
                         if ($arrayPlagiat["pourcentage"] > $element["pourcentage"]) {
@@ -153,6 +154,7 @@ class PlagiatEnLocalController extends Controller
                     $arrayMaxPlagiat = array_map("unserialize", array_unique(array_map("serialize", $arrayMaxPlagiat)));
 
                 }
+
                 Toastr::success('message', trans('Success : Résultats de la détection disponibles ! '));
                 return back()->with('arrayMaxPlagiat', $arrayMaxPlagiat);
 
