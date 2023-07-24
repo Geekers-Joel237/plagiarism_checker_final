@@ -104,10 +104,12 @@ class PlagiatEnLocalController extends Controller
                     //remplissage du path source
                     $arrayPlagiat["path_source"] = $mediaSource;
 
-                    Toastr::success('message', trans('Success : Résultats de la détection disponibles ! '));
-                    return back()->with('arrayMaxPlagiat', $arrayMaxPlagiat);
-
+                    array_push($arrayMaxPlagiat, $arrayPlagiat);
                 }
+
+                Toastr::success('message', trans('Success : Résultats de la détection disponibles ! '));
+                return back()->with('arrayMaxPlagiat', $arrayMaxPlagiat);
+
             } else {
                 $pdfParser = new \Smalot\PdfParser\Parser();
                 //debut du taitement du palgiat local
