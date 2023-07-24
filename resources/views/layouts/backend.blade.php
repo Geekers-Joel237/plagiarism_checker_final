@@ -34,7 +34,7 @@
 
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('toastr.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/toastr.css') }}">
     <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/favicon.ico') }}" />
     @yield('styles')
 </head>
@@ -331,7 +331,7 @@
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <!-- Custom JS File -->
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-    <script src="{{ asset('toastr.js') }}"></script>
+    <script src="{{ asset('assets/js/toastr.js') }}"></script>
     <script src="{{ asset('assets/js/chat.js') }}"></script>
     <script src="{{ asset('assets/js/treeview.js') }}"></script>
     <!-- Template JS File -->
@@ -343,7 +343,7 @@
         });
 
     </script>
-    {{-- {!! Toastr::message() !!} --}}
+    {!! Toastr::message() !!}
     <script>
         @if($errors->any())
         @foreach($errors->all() as $error)

@@ -9,6 +9,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Psr\Http\Client\ClientExceptionInterface;
+use Brian2694\Toastr\Facades\Toastr;
+
 
 
 class PlagiatEnLigneController extends Controller

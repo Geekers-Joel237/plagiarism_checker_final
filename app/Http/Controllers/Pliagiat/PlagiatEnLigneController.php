@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 
 class PlagiatEnLigneController extends Controller
@@ -38,35 +39,38 @@ class PlagiatEnLigneController extends Controller
      */
     public function store(Request $req)
     {
+        try {
+            $texte = $this->supprimer_caracteres_speciaux($req->text);
+            $texte = $this->couper_texte($texte);
+            $taille_texte_epure = strlen($texte);
+            $taille_texte_initial = strlen($req->text);
+            $rapport = (($taille_texte_epure * 100) / $taille_texte_initial);
+            $resultats = $this->check_plagiat($texte);
 
-        $texte = $this->supprimer_caracteres_speciaux($req->text);
-        $texte = $this->couper_texte($texte);
-        $taille_texte_epure = strlen($texte);
-        $taille_texte_initial = strlen($req->text);
-        $rapport = (($taille_texte_epure * 100) / $taille_texte_initial);
-        $resultats = $this->check_plagiat($texte);
+            //dd($resultats);
+            $scores = [];
 
-        //dd($resultats);
-        $scores = [];
-
-        if (!empty($resultats)){
-            foreach ($resultats->sources as $resultat){
-                $score = 0;
-                foreach ($resultat->matches as $value ){
-                    $score += $value->score;
+            if (!empty($resultats)){
+                foreach ($resultats->sources as $resultat){
+                    $score = 0;
+                    foreach ($resultat->matches as $value ){
+                        $score += $value->score;
+                    }
+                    $score /= count($resultat->matches);
+                    $scores[] = $score;
                 }
-                $score /= count($resultat->matches);
-                $scores[] = $score;
             }
+
+            Toastr::success('message', trans('Success : Résultats de la détection disponibles !'));
+            return back()
+                ->with('resultats',$resultats)
+                ->with('scores', $scores)
+                ->with('success',true);
+        }catch(Exception $exception){
+            Toastr::error('message', trans('error message.unable_to_save'));
+            return back();
         }
 
-        /*$texte = $this->supprimer_caracteres_speciaux($req->text);
-        $texte = $this->couper_texte($texte);*/
-
-        return back()
-            ->with('resultats',$resultats)
-            ->with('scores', $scores)
-            ->with('success',true);
     }
 
     private function couper_texte($texte) {
