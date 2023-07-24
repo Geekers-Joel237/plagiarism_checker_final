@@ -177,13 +177,13 @@
                             <div class="row">
                                 <form action="{{ route('uploadFile') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    
+                                    <div class="ml-4">
+                                        <button class="btn btn-warning" type="submit">chargez les documents</button>
+                                    </div>
                                     <div class="card-body">
                                         <div class="row">
-
                                             {{------------boutton de soumission-----------------}}
-                                            <div class="col-2 mt-3">
-                                                <button class="btn btn-success" type="submit">controllez le plagiat</button>
-                                            </div>
 
                                             <div class="col">
                                                 <div class="form-group row mb-4">
@@ -208,6 +208,7 @@
                                                                 {{ $source2 }}
                                                             @endif
                                                         </textarea>
+                                        
                                                         <input class="btn btn-primary" type="file" name="file2" required>
                                                     </div>
                                                 </div>
@@ -239,7 +240,7 @@
                                     </textarea>
 
                                     <div class="mt-3">
-                                        <button class="btn btn-warning" type="submit">seuille de plagiat</button>
+                                        <button class="btn btn-success" type="submit">seuille de plagiat</button>
                                     </div>
 
                                     <div class="mt-4">

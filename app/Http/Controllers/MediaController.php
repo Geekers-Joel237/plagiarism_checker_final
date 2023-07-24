@@ -52,13 +52,26 @@ class MediaController extends Controller
                 if($request->file2){
                     $file2 = $request->file2;
 
+                    $fileName = time().'_'.$request->file2->getClientOriginalName();
+                    $filePath2 = $request->file('file')->storeAs('uploads', $fileName, 'public');
+                    $extension = $request->file('file')->getClientOriginalExtension();
+    
+                    $fileModal->filePath = $filePath2;
+                    $fileModal->fileName = $fileName;
+                    $fileModal->extension = $extension;
+    
+                    $fileModal->save();
+
                     $pdfParser2 = new \Smalot\PdfParser\Parser();
                     $pdf2 = $pdfParser2->parseFile($file2->path());
                     $content2 = $pdf2->getText();
                     $this->contenueFile2 = $content2;
                     return back()
                         ->with('source', $content)
-                        ->with('source2', $content2);
+                        ->with('source2', $content2)
+                        ->with('path1', $filePath)
+                        ->with('path2',$filePath2);
+                        
                 }else{
                     return back()
                         ->with('source', $content)

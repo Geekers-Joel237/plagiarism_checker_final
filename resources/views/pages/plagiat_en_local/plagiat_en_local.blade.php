@@ -22,12 +22,12 @@
                         <section>
                             <div class="row">
                                 <div class="col-3 d-flex flex-column py-5 justify-content-between">
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                       
                                         {{---------formulaire de somission du fichier-------------}}
                                         <form action="{{route('plagiat.uploadFile')}}"  method="POST" enctype="multipart/form-data">
                                             @csrf
-                                           <div class="form-group">
+                                           <div class="form-group mr-3">
                                             <label for="file">Choisir le document</label>
                                             <input class="btn btn-primary" type="file" id="file" name="file" required>
                                            </div>
@@ -41,14 +41,22 @@
                                     </div>
                                 </div>
                                 <div class="col-9">
-                                    <div class="form-group row mb-4">
-                                        <div class="col-sm-12 col-md-12 ml-3 mr-3">
+                                    <div class="form-group row mb-4 ml-4">
+                                        <div class="col-sm-12 col-md-12">
                                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Source</label>
+
+                                            @if (!Session::get('source'))
                                             <textarea class="summernote" >
                                                 @if ($source = Session::get('source'))
                                                  {{ $source }}
                                                 @endif
                                             </textarea>
+                                            @elseif ($path1 = Session::get('path'))
+                                            <embed src="{{ asset("storage/$path1")}}" type="application/pdf" width="550" height="550" class="ml-5">
+                                            @else
+                                            <textarea class="summernote " style="max-height: 500px;overflow-y: auto;"></textarea>
+                                            @endif
+                                            
                                         </div>
                                     </div>
 

@@ -41,7 +41,10 @@ class PlagiatEnLocalController extends Controller
 
                 $fileModal->save();
 
-                return back()->with('source', $content);
+                return back()
+                ->with('source', $content)
+                ->with('path', $filePath)
+                ;
 
 
             }
