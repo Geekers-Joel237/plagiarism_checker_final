@@ -122,7 +122,7 @@
                                                                         {{$resultat->url}}
                                                                     </a>
                                                                 </td>
-                                                                <td>{{$resultat->title}}</td>
+                                                                <td style="max-width: 30% !important;">{{$resultat->title}}</td>
                                                                 {{--<td>{{count($resultat->matches)}}</td>--}}
                                                                 @if($scores[$key]+ $resultats->percentPlagiarism < $seuil)
                                                                     <td class="align-middle text-success">
