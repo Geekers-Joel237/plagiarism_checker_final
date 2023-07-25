@@ -111,7 +111,7 @@ class PlagiatEnLocalController extends Controller
                 }
 
                 Toastr::success('message', trans('Success : Résultats de la détection disponibles ! '));
-                return back()->with('arrayMaxPlagiat', $arrayMaxPlagiat);
+                return back()->with('arrayMaxPlagiat', $arrayMaxPlagiat)->with('seuil',$seuil);
 
             } else {
                 $pdfParser = new \Smalot\PdfParser\Parser();
