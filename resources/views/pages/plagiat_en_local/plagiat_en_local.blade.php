@@ -110,7 +110,35 @@
                                                         {{$plagiat["pourcentage"]}}%
                                                     </td>
                                                     <td>2023-05-05</td>
-                                                <td><a href="#" class="btn btn-primary">Détails</a></td>
+                                                <td>
+                                                    <form action="{{route('generationRapport')}}" method="POST" enctype="multipart/form-data" target="_blank">
+                                                        @csrf
+                                                        <textarea style="display:none" name="scorePlagiat">
+                                                            <!-- @if ($score = Session::get('score'))
+                                                                {{$score}}
+                                                            @endif-->
+                                                            {{$plagiat["pourcentage"]}}
+                                                        </textarea>
+                                                        <textarea style="display:none" name="source">
+                                                            @if ($source = Session::get('source'))
+                                                            {{ $source }}
+                                                           @endif
+                                                        </textarea>
+                                                        <textarea style="display:none" name="cible">
+                                                            <!--  @if ($source2 = Session::get('source2'))
+                                                                {{$source2}}
+                                                            @endif -->
+                                                            {{$plagiat["content"]}}
+                                                        </textarea>
+                                                        <textarea style="display:none"  name="similarcontent">
+                                                              <!--@if ($similar = Session::get('similarcontent'))
+                                                                    <?php echo($similar) ?>
+                                                            @endif-->
+                                                            <?php echo($plagiat["diff"])?>
+                                                        </textarea>
+                                                        <button class="btn btn-success">génerer le rapport</button>
+                                                    </form>
+                                                </td>
 
                                                 </tr>
                                             @endforeach
