@@ -335,14 +335,7 @@
 
                                 <div class="col">
                                     <p>
-                                        Description de code couleur An country demesne message it. Bachelor domestic
-                                        extended doubtful as concerns
-                                        at. Morning
-                                        prudent removal an letters by. On could my in order never it. Or excited
-                                        certain
-                                        sixteen it to parties colonel. Depending conveying direction has led immediate.
-                                        Law
-                                        gate her well bed life feet seen rent. On nature or no except it sussex
+                                        Lancer la génération du rapport de scan ici !
                                     </p>
                                 </div>
                             </div>
