@@ -100,6 +100,8 @@
                                                 $count = 0;
                                             @endphp
                                             @foreach ($arrayMaxPlagiat as $plagiat)
+                                                @if ($plagiat["path_source"] != $plagiat["path_cible"])
+                                                
                                                 <tr>
                                                     <td>
                                                         {{++$count}}
@@ -114,9 +116,7 @@
                                                     <form action="{{route('generationRapport')}}" method="POST" enctype="multipart/form-data" target="_blank">
                                                         @csrf
                                                         <textarea style="display:none" name="scorePlagiat">
-                                                            <!-- @if ($score = Session::get('score'))
-                                                                {{$score}}
-                                                            @endif-->
+                                                          
                                                             {{$plagiat["pourcentage"]}}
                                                         </textarea>
                                                         <textarea style="display:none" name="source">
@@ -125,9 +125,7 @@
                                                            @endif
                                                         </textarea>
                                                         <textarea style="display:none" name="cible">
-                                                            <!--  @if ($source2 = Session::get('source2'))
-                                                                {{$source2}}
-                                                            @endif -->
+                                                            
                                                             {{$plagiat["content"]}}
                                                         </textarea>
                                                         <textarea style="display:none"  name="similarcontent">
@@ -141,6 +139,7 @@
                                                 </td>
 
                                                 </tr>
+                                                @endif
                                             @endforeach
                                             </tbody>
                                         </table>
