@@ -162,7 +162,7 @@ class PlagiatEnLigneController extends Controller
             $client = new Client();
             $headers = [
                 'Content-Type' => 'application/json',
-                'X-RapidAPI-Key' => '129fc5f613msh89b00c189f134e1p1a1beajsn524d6e52bde1',
+                'X-RapidAPI-Key' => 'f82b2fb840msh9015b1cee3e8062p10fb33jsn840fc5311bce',
                 'X-RapidAPI-Host' => 'plagiarism-checker-and-auto-citation-generator-multi-lingual.p.rapidapi.com'
             ];
             $body = '{
