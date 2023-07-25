@@ -68,7 +68,7 @@ class PlagiatEnLocalController extends Controller
         try {
             $media = Media::all();
             //le soucument quon veux examiner est le dernier enregistrement de la bd
-            $mediaSource = $media[$media->count() - 2]->filePath;
+            $mediaSource = $media[$media->count() - 1]->filePath;
 
             $arrayPlagiat = ["path_cible" => "", "path_source" => "", "content" => "", "pourcentage" => 0, "diff" => "",];
 
