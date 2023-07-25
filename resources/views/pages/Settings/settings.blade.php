@@ -237,7 +237,7 @@
                                 @csrf
                                 @method('POST')
                                 <input type="number" class="form-control" style="font-size: 20px !important;  "
-                                       placeholder=" value" min="1" value="{{$score_recent}}"
+                                       placeholder=" value" min="1" value="{{$score_recent ? : 90}}"
                                        max="100" id="nombre" name="seuil_plagiat"/>
                                 <div class="pricing-cta">
                                     <button type="submit" class=" form-control btn btn-primary" onclick="getValue()"
