@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Media;
+use App\Models\Score;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -92,7 +93,8 @@ class MediaController extends Controller
 
     public function comparePlagiat(Request $request)
     {
-
+        $seuil = Score::latest()?->first();
+        $seuil = intval($seuil?->seuil_plagiat);
         try {
             $content1 = $request->source;
             $content2 = $request->source2;
@@ -118,7 +120,8 @@ class MediaController extends Controller
                 ->with('source', $content1)
                 ->with('source2', $content2)
                 ->with('similarcontent', $similarcontent)
-                ->with('score', $similar);
+                ->with('score', $similar)
+                ->with('seuil',$seuil);
         } catch (Exception $e) {
             Toastr::error('message', trans('Une erreur est survenue !'));
             return back();
