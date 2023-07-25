@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pliagiat;
 
 use App\Http\Controllers\Controller;
+use App\Models\Score;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -39,6 +40,8 @@ class PlagiatEnLigneController extends Controller
      */
     public function store(Request $req)
     {
+        $seuil = Score::latest()?->first();
+        $seuil = intval($seuil?->seuil_plagiat);
         try {
             $texte = $this->supprimer_caracteres_speciaux($req->text);
             $texte = $this->couper_texte($texte);
@@ -65,6 +68,7 @@ class PlagiatEnLigneController extends Controller
             return back()
                 ->with('resultats',$resultats)
                 ->with('scores', $scores)
+                ->with('seuil',$seuil)
                 ->with('success',true);
         }catch(Exception $exception){
             Toastr::error('message', trans('error message.unable_to_save'));
