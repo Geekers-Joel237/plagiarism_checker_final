@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pliagiat;
 
 use App\Http\Controllers\Controller;
 use App\Models\Media;
+use App\Models\Score;
 use Caxy\HtmlDiff\HtmlDiff;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -62,6 +63,8 @@ class PlagiatEnLocalController extends Controller
 
     public function traitementLocal(Request $request)
     {
+        $seuil = Score::latest()?->first();
+        $seuil = intval($seuil?->seuil_plagiat);
         try {
             $media = Media::all();
             //le soucument quon veux examiner est le dernier enregistrement de la bd
@@ -156,7 +159,7 @@ class PlagiatEnLocalController extends Controller
                 }
 
                 Toastr::success('message', trans('Success : Résultats de la détection disponibles ! '));
-                return back()->with('arrayMaxPlagiat', $arrayMaxPlagiat);
+                return back()->with('arrayMaxPlagiat', $arrayMaxPlagiat)->with('seuil',$seuil);
 
             }
         }catch (Exception $exception){
