@@ -11,7 +11,7 @@ class SettingsController extends Controller
 {
     public function index()
     {
-        $score_recent = Score::latest()->first();
+        $score_recent = Score::latest()?->first();
         $score_recent = intval($score_recent->seuil_plagiat);
         return view('pages.settings.settings', compact(
             'score_recent'
