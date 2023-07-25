@@ -31,7 +31,7 @@ Route::group(['prefix' => 'plagiat', 'namespace' => 'App\Http\Controllers\Pliagi
     Route::post('traitementLocal',['App\Http\Controllers\Pliagiat\PlagiatEnLocalController','traitementLocal'])->name('traitementLocal');
     Route::resource('dashboard', 'DashboardController');
     Route::resource('settings', 'SettingsController');
-    
+
 });
 
 Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\User', 'as' => 'user.'], function (){
